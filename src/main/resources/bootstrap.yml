@@ -1,0 +1,16 @@
+#spring:
+#  application:
+#    name: UserMS
+#  cloud:
+#    consul:
+#      config:
+#        enabled: true
+#        prefixes:
+#        - config
+#        default-context: application
+#        profile-separator: '::'
+#        data-key: data
+#        format: yaml
+#        
+#server:
+#  port: 8081

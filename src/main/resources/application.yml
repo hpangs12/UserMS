@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: UserMS
+  datasource:
+    url: jdbc:mysql://localhost:3306/usermsdb
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+#  security:
+#    user:
+#      name: admin
+#      password: admin
+
+management:
+ endpoints:
+  web:
+   exposure:
+    include: '*'
+  
+server:
+  port: 8081
+  
+  
