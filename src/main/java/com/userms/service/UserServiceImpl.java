@@ -110,7 +110,19 @@ public class UserServiceImpl implements UserService{
 		return UserUtility.entityToDto(optional.get());
 	}
 	
-
+	@Override
+	public UserDTO getUserById(Integer userId) {
+		
+		Optional<MyUser> optional = userRepository.findById(userId);
+		
+		if(optional.isEmpty()) {
+			throw new UsernameNotFoundException("User not found!");
+		}
+		
+		return UserUtility.entityToDto(optional.get());
+	}
+	
+	
 	@Override
 	public void deactivateOwnAccount(String username, String password) throws InvalidPasswordException {
 		

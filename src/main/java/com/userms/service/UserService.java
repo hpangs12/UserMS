@@ -36,4 +36,6 @@ public interface UserService {
 	UserDTO createAdmin(UserDTO userDTO) throws UsernameNotUniqueException;
 
 	void deleteOwnAccount(String username, String password) throws InvalidPasswordException;
+
+	UserDTO getUserById(Integer userId);
 }

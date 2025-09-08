@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,6 +52,12 @@ public class UserController {
 		return new ResponseEntity<>(userService.getUserByUsername(username), HttpStatus.OK);
 	}
 	
+	@GetMapping("/id/{userId}")
+	public ResponseEntity<UserDTO> getUserById(@PathVariable Integer userId) throws UsernameNotFoundException {
+		
+		return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
+	}
+	
 	@PostMapping("login")
 	public ResponseEntity<?> login(@RequestBody UserDTO user) {
 		
@@ -58,7 +65,9 @@ public class UserController {
 	}
 	
 	@PostMapping("/auth/validate")
-	public ResponseEntity<?> validateToken(@RequestBody String token) {
+	public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader) {
+		
+		String token = authHeader.substring(7);
 		
 		return new ResponseEntity<>(userService.validateToken(token), HttpStatus.OK);
 	}
