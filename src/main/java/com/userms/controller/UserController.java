@@ -26,7 +26,6 @@ import com.userms.service.UserService;
  * </p>
  *
  */
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("users")
 public class UserController {
