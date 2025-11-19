@@ -106,8 +106,9 @@ public class UserServiceImpl implements UserService{
 		if(optional.isEmpty()) {
 			throw new UsernameNotFoundException("User not found!");
 		}
-		
-		return UserUtility.entityToDto(optional.get());
+		UserDTO userDto = UserUtility.entityToDto(optional.get());
+		userDto.setUserId(optional.get().getId());
+		return userDto;
 	}
 	
 	@Override
