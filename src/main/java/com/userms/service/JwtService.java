@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.userms.dto.UserDTO;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -36,16 +38,17 @@ public class JwtService {
 	
 	private String secretKey = "XpXDM6wIgojmBGFFRQIjLJx5fu1UAXv5iPcplENChoIp";
 	
-	public String generateToken(String username, Set<String> roleSet) {
+	public String generateToken(UserDTO user, Set<String> roleSet) {
 		
 		Map<String, Object> claims = new HashMap<>();
-		String roles = String.join(",",roleSet);
-		claims.put("roles", roles);
+		claims.put("userId", user.getUserId());
+		claims.put("userName", user.getUsername());
+		claims.put("roles", roleSet);
 		
 		return Jwts.builder()
 				.claims()
 				.add(claims)
-				.subject(username)
+				.subject(user.getUsername())
 				.issuedAt(new Date(System.currentTimeMillis()))
 				.expiration(new Date(System.currentTimeMillis() + 1000*60*60))
 				.and()

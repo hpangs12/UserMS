@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService{
 		myUser.setLastLoginAt(LocalDateTime.now());
 		userRepository.save(myUser);
 		
-	    return ResponseEntity.status(HttpStatus.OK).body(jwtService.generateToken(user.getUsername(), myUser.getRoles()));
+	    return ResponseEntity.status(HttpStatus.OK).body(jwtService.generateToken(user, myUser.getRoles()));
 		
 	}
 
